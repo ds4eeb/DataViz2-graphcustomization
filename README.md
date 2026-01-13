@@ -107,13 +107,13 @@ That previous graph only addresses part of our question: we asked not
 only “how are bill length and bill depth associated”, but also “**how
 does this vary by species of penguin**?”
 
-To address the second part of our question,
+To address the second part of our question:
 
 1.  Change the aesthetics of this plot to color the points by the
     species of penguin and
 
-2.  Interpret the graph by describing if this changes your answer to the
-    previous question.
+2.  Interpret the graph by describing the relationship you see and if
+    this new visualization changes your answer to the previous question.
 
 The take-home message here is to be thorough with how you look at your
 data! If you ignore certain variables, you might miss important patterns
@@ -261,8 +261,9 @@ change up the scales of their graphs are:
 1.  Changing the limits of their plots and
 2.  Transforming axis values to log scales.
 
-Let’s modify the y-axis. It’s a continuous variable, so we use
-`scale_y_continuous()`.
+Let’s change the limits of the y-axis to go between 0 and 30mm. It’s a
+continuous variable, so we use `scale_y_continuous()` and provide a
+vector of a minimum and a maximum.
 
 ``` r
 ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
@@ -271,7 +272,7 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
              size = 2.5) +
   scale_fill_brewer(palette = "Dark2") +
   scale_shape_manual(values = c(21, 22, 24)) +
-  scale_y_continuous(limits = c(0, 100))
+  scale_y_continuous(limits = c(0, 30))
 ```
 
     Warning: Removed 2 rows containing missing values or values outside the scale range
@@ -279,9 +280,204 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
 
 ![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-11-1.png)
 
-## Labels
+### Q1.4: How to use the existing maximum for limits
+
+Let’s say we want our limits to include 0, but we want to use ggplot’s
+default for the maximum y limit. Go to the built-in help page of
+`scale_y_continuous()` and figure out what to replace the \* with in
+`limits = c(0, *)` in order to accomplish this, then modify modify that
+code below.
+
+------------------------------------------------------------------------
+
+Another reason to modify the way your axes look is if we want to plot on
+a log scale. This can be very useful if your data spans many orders of
+magnitude (multiples of 10) - aka there are many very small values that
+get masked by other large values.
+
+We do this with `scale_y_log10()`, though this isn’t a great dataset to
+use as an example because the data is all very close together - it won’t
+look very different!
+
+``` r
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(fill = species,
+                 shape = species),
+             size = 2.5) +
+  scale_fill_brewer(palette = "Dark2") +
+  scale_shape_manual(values = c(21, 22, 24)) +
+  scale_y_log10()
+```
+
+    Warning: Removed 2 rows containing missing values or values outside the scale range
+    (`geom_point()`).
+
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-12-1.png)
+
+## Axis and legend titles
+
+Let’s backtrack a little bit to the graph before we started messing with
+the y-axis and talk about how to make better axis and legend titles. By
+default, ggplot creates these titles based on the column names that you
+specify within `aes()`. However, “bill_length_mm” is a pretty lame axis
+title for a presentation.
+
+To change this, we use the `labs()` function, which allows us to rename
+whatever `aes()` elements we have specified in the format
+`x = "New x axis title"` and/or
+`fill = "New legend title for the fill"`.
+
+``` r
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(fill = species,
+                 shape = species),
+             size = 2.5) +
+  scale_fill_brewer(palette = "Dark2") +
+  scale_shape_manual(values = c(21, 22, 24)) +
+  labs(x = "Bill length (mm)",
+       y = "Bill depth (mm)")
+```
+
+    Warning: Removed 2 rows containing missing values or values outside the scale range
+    (`geom_point()`).
+
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-13-1.png)
+
+### Q1.5: Change the legend title
+
+The legend title is currently not capitalized - add to the `labs()`
+function to change the title of the correct aesthetic(s) to make the
+legend title read “Species”. (You may encounter an unexpected result -
+try and figure out what you can do to make it appear how you want!).
 
 ## Themes
+
+This is looking decent, but there’s still more we can do; we have lots
+of flexibility in how the non-data-related components of the graph look
+(think the font size, background color, axis grid lines, etc.). To
+modify this, we add **themes** using the `theme()` function.
+
+Go to the help page for `theme()`, read the description, and scroll down
+to see the extent of the components you can modify. Also see this link
+for a handy visual guide:
+<https://statsandr.com/blog/best-rstudio-addins-in-rstudio-or-how-to-make-your-coding-life-easier_files/ggplot_theme_system_cheatsheet.pdf>
+
+Within the `theme()` function, we specify the element that we want to
+modify, for instance, the `axis.title.x =` modifies the x axis title.
+Because the x axis title is a `text` element, we then add
+`axis.title.x = element_text()` and specify things within the
+`element_text()` function.
+
+``` r
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(fill = species,
+                 shape = species),
+             size = 2.5) +
+  scale_fill_brewer(palette = "Dark2") +
+  scale_shape_manual(values = c(21, 22, 24)) +
+  labs(x = "Bill length (mm)",
+       y = "Bill depth (mm)", 
+       fill = "Species",
+       shape = "Species") +
+  theme(axis.title.x = element_text(color = "red",
+                                    size = 16))
+```
+
+    Warning: Removed 2 rows containing missing values or values outside the scale range
+    (`geom_point()`).
+
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-14-1.png)
+
+Depending on what the element is, you use a different `element_*()`
+function:
+
+`element_text()`: Controls text appearance (font, size, color, etc.) for
+titles, labels, and axis text. `element_rect()`: Controls the appearance
+of rectangular elements like the plot background and legend background
+(fill, border color, etc.). `element_line()`: Controls the appearance of
+line elements like grid lines and axis lines (color, size, linetype,
+etc.). `element_blank()`: Hides or removes an element entirely (e.g.,
+`panel.grid.major = element_blank()`).
+
+### Q1.6: What font faces are available?
+
+Go to the `element_text()` help page: under “Usage” you will see what
+arguments each element function can modify, and if you scroll down to
+“Arguments” you can read more about the specifics of each element you
+can modify.
+
+What are the four options for the “face” of the text?
+
+------------------------------------------------------------------------
+
+Modifying ALL THAT from scratch can be overwhelming! Thankfully, R has a
+handful of built-in, pre-curated themes that you can choose from. Add on
+a new line to this graph and start typing `theme_` - note how multiple
+options pop up! Let’s click on and add `theme_classic()`.
+
+``` r
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(fill = species,
+                 shape = species),
+             size = 2.5) +
+  scale_fill_brewer(palette = "Dark2") +
+  scale_shape_manual(values = c(21, 22, 24)) +
+  labs(x = "Bill length (mm)",
+       y = "Bill depth (mm)", 
+       fill = "Species",
+       shape = "Species") +
+  theme(axis.title.x = element_text(color = "red",
+                                    size = 16)) +
+  theme_classic()
+```
+
+    Warning: Removed 2 rows containing missing values or values outside the scale range
+    (`geom_point()`).
+
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-15-1.png)
+
+That looks quite nice! The weird gray default background is gone, and
+there’s now a traditional x and y axis with no axis panel grids.
+
+Note that the large, red x-axis title has been overridden by the new
+theme we put in. What happens when you switch the order and put
+`theme_classic()` before `theme(...)`? (don’t forget to remove/add `+`’s
+where applicable…).
+
+Try out some of the other built-in themes and see what you like!
+
+------------------------------------------------------------------------
+
+Themes contain far too much content to walk through here - hopefully
+this provides a springboard into the possibilities! Always remember to
+revisit help pages and the cheatsheets that have been provided along the
+way.
+
+``` r
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(fill = species,
+                 shape = species),
+             size = 2.5) +
+  scale_fill_brewer(palette = "Dark2") +
+  scale_shape_manual(values = c(21, 22, 24)) +
+  labs(x = "Bill length (mm)",
+       y = "Bill depth (mm)", 
+       fill = "Species",
+       shape = "Species") +
+  theme_classic() +
+  theme(axis.title = element_text(size = 14),
+        axis.text = element_text(size = 12),
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 12),
+        legend.position = "inside",
+        legend.position.inside = c(0.9, 0.15)
+        )
+```
+
+    Warning: Removed 2 rows containing missing values or values outside the scale range
+    (`geom_point()`).
+
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-16-1.png)
 
 # 2) CO2 Uptake in Grass Plants Data
 
