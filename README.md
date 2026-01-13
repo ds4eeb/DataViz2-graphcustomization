@@ -44,7 +44,8 @@ and precede your code with comments that describe what that code does.*
 First, let’s load our packages. You should already have the `here` and
 `ggplot2` packages installed; read them in from the library in your
 code. Also install and read in the `palmerpenguins` package, which
-contains built-in data.
+contains built-in data - you may recognize this from Malin’s ggplot
+lecture!
 
 ``` r
 # install.packages("palmerpenguins")
@@ -76,12 +77,12 @@ and sex”. Read on to learn about each column in the dataset.
 
 ## Start with a question
 
-Let’s start by forming a research question. Let’s ask: How are bill
+Let’s start by forming a research question. Let’s ask: *How are bill
 length and bill depth associated, and how does this vary by species of
-penguin?
+penguin?*
 
-Let’s create a basic graph to begin, but plotting `bill_length_mm` on
-the x-axis and `bill_depth_mm` on the y-axis.
+Let’s create a basic graph to begin. Plotting `bill_length_mm` on the
+x-axis and `bill_depth_mm` on the y-axis.
 
 ``` r
 ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
@@ -98,24 +99,189 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
 Does it look like there is a relationship between these variables?
 Describe the relationship.
 
-### Q2.2: Color the points by species of penguin
+------------------------------------------------------------------------
+
+### Q1.2: Color the points by species of penguin
 
 That previous graph only addresses part of our question: we asked not
 only “how are bill length and bill depth associated”, but also “**how
 does this vary by species of penguin**?”
 
-Next, 1) change the aesthetics of this plot to color the points by the
-species of penguin and 2) interpret the graph by describing if this
-changes your answer to the previous question.
+To address the second part of our question,
+
+1.  Change the aesthetics of this plot to color the points by the
+    species of penguin and
+
+2.  Interpret the graph by describing if this changes your answer to the
+    previous question.
 
 The take-home message here is to be thorough with how you look at your
 data! If you ignore certain variables, you might miss important patterns
 (this is also crucial when deciding what statistical models we should
 run on our data, but more on that in a few weeks!).
 
-Ok, now let’s jump into some fun data visualization!
+Ok, now let’s jump into some fun data visualization and learn about how
+to customize our plots!
 
-## 
+------------------------------------------------------------------------
+
+## Scales for aesthetics
+
+We can manually modify the values of the aesthetics of our ggplot graph
+(the `color`, `shape`, opacity aka `alpha`, etc) by using a series of
+functions called `scale_*_**()` where the first \* is replaced by the
+aesthetic we are modifying (e.g. color), and the second translates to
+the kind of prepacked or manual set of values that we want to use. Often
+it will be `scale_*_manual()` if we want to manually chose the values
+instead of using premade ones.
+
+Monday’s Seaside Chat provided some practice with modifying the scales
+of the color aesthetics using `scale_color_manual()` and
+`scale_color_brewer()`.
+
+### Q1.3: Add your favorite colors to your graph
+
+Using your new color skills, modify the `scale_color_*` code below to
+include a new color selection!
+
+*Sidenote: When you’re typing within a function, you can hit “Enter” (or
+“Return” for Mac users) after a comma to continue code on a new line -
+see how I made a new line within `geom_point(aes())`. This can make
+things look much neater if you have content for many arguments at once!
+It also does not affect how the code is run at all.*
+
+``` r
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(color = species)) +
+  scale_color_brewer(palette = "Dark2")
+```
+
+    Warning: Removed 2 rows containing missing values or values outside the scale range
+    (`geom_point()`).
+
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-5-1.png)
+
+Let’s make the shape of the points vary by species to even more clearly
+separate the points by species:
+
+``` r
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(color = species,
+                 shape = species)) +
+  scale_color_brewer(palette = "Dark2")
+```
+
+    Warning: Removed 2 rows containing missing values or values outside the scale range
+    (`geom_point()`).
+
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-6-1.png)
+
+If we want to manually change the shapes that ggplot supplies, we use
+`scale_shape_manual()`:
+
+``` r
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(color = species,
+                 shape = species)) +
+  scale_color_brewer(palette = "Dark2") +
+  scale_shape_manual(values = c(8, 11, 14))
+```
+
+    Warning: Removed 2 rows containing missing values or values outside the scale range
+    (`geom_point()`).
+
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-7-1.png)
+
+I personally like using shapes that have a black outline and are filled
+with the color, rather than being solid throughout. Change the manually
+selected shapes to 21, 22, and 24
+
+``` r
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(color = species,
+                 shape = species)) +
+  scale_color_brewer(palette = "Dark2") +
+  scale_shape_manual(values = c(21, 22, 24))
+```
+
+    Warning: Removed 2 rows containing missing values or values outside the scale range
+    (`geom_point()`).
+
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-8-1.png)
+
+Why aren’t the shapes filled with the color we supply? Some shapes and
+geoms in R have both `color` and `fill` capabilities. When they have
+both, then anything you supply to `color` will color the outline of the
+shape, while anything supplied to `fill` will fill in the shape (as we
+want here).
+
+To make this switch, we are going to change the `color = species`
+aesthetic to `fill = species` and instead of `scale_color_brewer()` we
+will use `scale_fill_brewer()`
+
+``` r
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(fill = species,
+                 shape = species)) +
+  scale_fill_brewer(palette = "Dark2") +
+  scale_shape_manual(values = c(21, 22, 24))
+```
+
+    Warning: Removed 2 rows containing missing values or values outside the scale range
+    (`geom_point()`).
+
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-9-1.png)
+
+At this point, I’d also like to make the size of the points a little
+bigger, but I don’t want it to vary with something in the data. As in
+the last activity, to make an element of the geom vary statically across
+all of the data, put it *outside* of the `aes()` but still within the
+relevant geom:
+
+``` r
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(fill = species,
+                 shape = species),
+             size = 2.5) +
+  scale_fill_brewer(palette = "Dark2") +
+  scale_shape_manual(values = c(21, 22, 24))
+```
+
+    Warning: Removed 2 rows containing missing values or values outside the scale range
+    (`geom_point()`).
+
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-10-1.png)
+
+## Scales for axis aesthetics specifically
+
+Your x- and y- axes are part of your aesthetics, just like color, fill,
+shape. You can modify the scales of the axes too. Two common ways people
+change up the scales of their graphs are:
+
+1.  Changing the limits of their plots and
+2.  Transforming axis values to log scales.
+
+Let’s modify the y-axis. It’s a continuous variable, so we use
+`scale_y_continuous()`.
+
+``` r
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(fill = species,
+                 shape = species),
+             size = 2.5) +
+  scale_fill_brewer(palette = "Dark2") +
+  scale_shape_manual(values = c(21, 22, 24)) +
+  scale_y_continuous(limits = c(0, 100))
+```
+
+    Warning: Removed 2 rows containing missing values or values outside the scale range
+    (`geom_point()`).
+
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-11-1.png)
+
+## Labels
+
+## Themes
 
 # 2) CO2 Uptake in Grass Plants Data
 
