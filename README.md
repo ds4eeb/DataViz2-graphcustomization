@@ -20,22 +20,23 @@ A note about submitting code:
 As a general practice, it is good to **use headers to denote which
 section of the homework** you are in and **add in your own comments
 about what each line is actually doing** - this is excellent practice
-for organizing your own big R scripts in the future. The biggest way
-that you will code for probably the first few years of your coding
-career will consist of you revisiting old R scripts and copying/pasting
-code and/or adapting that code to your current problems. I promise you,
-your future self will be thrilled with your current self if you take the
-extra few minutes to 1) organize your code in a nice way and 2) provide
-detailed comments about what each line is doing (as well as what
-questions you have about it).
+for organizing your own big R scripts in the future. A common way that
+you will code for the first few years of your coding career will consist
+of you revisiting old R scripts and copying/pasting code and/or adapting
+that code to your current problems. I promise you, your future self will
+be thrilled with your current self if you take the extra few minutes
+to 1) organize your code in a nice way and 2) provide detailed comments
+about what each line is doing (as well as what questions you have about
+it).
 
 Also, don’t be afraid to use lots of blank lines! It is MUCH nicer for
 your future self to look at code that has a few blank lines in between
 sections of code than a bajillion lines in a row of straight code.
 
-*From here on, please put headers (either as comments in the code or as
-Quarto headers) to denote which question you are answering (e.g. “Q1:”)
-and precede your code with comments that describe what that code does.*
+*For the remaining activities, please put headers (either as comments in
+the code or as Quarto headers) to denote which question you are
+answering (e.g. “Q1:”) and precede your code with comments that describe
+what that code does.*
 
 # 1) Penguins!
 
@@ -89,9 +90,6 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point()
 ```
 
-    Warning: Removed 2 rows containing missing values or values outside the scale range
-    (`geom_point()`).
-
 ![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
 ### Q1.1: Do you see a relationship?
@@ -113,7 +111,7 @@ To address the second part of our question:
     species of penguin and
 
 2.  Interpret the graph by describing the relationship you see and if
-    this new visualization changes your answer to the previous question.
+    this new visualization changes your answer to Q1.1.
 
 The take-home message here is to be thorough with how you look at your
 data! If you ignore certain variables, you might miss important patterns
@@ -128,7 +126,7 @@ to customize our plots!
 ## Scales for aesthetics
 
 We can manually modify the values of the aesthetics of our ggplot graph
-(the `color`, `shape`, opacity aka `alpha`, etc) by using a series of
+(the `color`, `shape`, opacity (aka `alpha`), etc) by using a series of
 functions called `scale_*_**()` where the first \* is replaced by the
 aesthetic we are modifying (e.g. color), and the second translates to
 the kind of prepacked or manual set of values that we want to use. Often
@@ -156,9 +154,6 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   scale_color_brewer(palette = "Dark2")
 ```
 
-    Warning: Removed 2 rows containing missing values or values outside the scale range
-    (`geom_point()`).
-
 ![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 Let’s make the shape of the points vary by species to even more clearly
@@ -170,9 +165,6 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
                  shape = species)) +
   scale_color_brewer(palette = "Dark2")
 ```
-
-    Warning: Removed 2 rows containing missing values or values outside the scale range
-    (`geom_point()`).
 
 ![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
@@ -187,9 +179,6 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   scale_shape_manual(values = c(8, 11, 14))
 ```
 
-    Warning: Removed 2 rows containing missing values or values outside the scale range
-    (`geom_point()`).
-
 ![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
 I personally like using shapes that have a black outline and are filled
@@ -203,9 +192,6 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   scale_color_brewer(palette = "Dark2") +
   scale_shape_manual(values = c(21, 22, 24))
 ```
-
-    Warning: Removed 2 rows containing missing values or values outside the scale range
-    (`geom_point()`).
 
 ![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
@@ -227,9 +213,6 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   scale_shape_manual(values = c(21, 22, 24))
 ```
 
-    Warning: Removed 2 rows containing missing values or values outside the scale range
-    (`geom_point()`).
-
 ![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 At this point, I’d also like to make the size of the points a little
@@ -247,9 +230,6 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   scale_shape_manual(values = c(21, 22, 24))
 ```
 
-    Warning: Removed 2 rows containing missing values or values outside the scale range
-    (`geom_point()`).
-
 ![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
 Let’s put a `geom_smooth()` with `method = "lm"` in there to look at the
@@ -264,14 +244,6 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   scale_fill_brewer(palette = "Dark2") +
   scale_shape_manual(values = c(21, 22, 24))
 ```
-
-    `geom_smooth()` using formula = 'y ~ x'
-
-    Warning: Removed 2 rows containing non-finite outside the scale range
-    (`stat_smooth()`).
-
-    Warning: Removed 2 rows containing missing values or values outside the scale range
-    (`geom_point()`).
 
 ![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-11-1.png)
 
@@ -293,14 +265,6 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   scale_shape_manual(values = c(21, 22, 24))
 ```
 
-    `geom_smooth()` using formula = 'y ~ x'
-
-    Warning: Removed 2 rows containing non-finite outside the scale range
-    (`stat_smooth()`).
-
-    Warning: Removed 2 rows containing missing values or values outside the scale range
-    (`geom_point()`).
-
 ![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-12-1.png)
 
 Now there are three separate `geom_smooth()` lines - one for each
@@ -321,14 +285,6 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   scale_color_brewer(palette = "Dark2") +
   scale_shape_manual(values = c(21, 22, 24))
 ```
-
-    `geom_smooth()` using formula = 'y ~ x'
-
-    Warning: Removed 2 rows containing non-finite outside the scale range
-    (`stat_smooth()`).
-
-    Warning: Removed 2 rows containing missing values or values outside the scale range
-    (`geom_point()`).
 
 ![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-13-1.png)
 
@@ -357,14 +313,6 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   scale_shape_manual(values = c(21, 22, 24)) +
   scale_y_continuous(limits = c(0, 30))
 ```
-
-    `geom_smooth()` using formula = 'y ~ x'
-
-    Warning: Removed 2 rows containing non-finite outside the scale range
-    (`stat_smooth()`).
-
-    Warning: Removed 2 rows containing missing values or values outside the scale range
-    (`geom_point()`).
 
 ![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-14-1.png)
 
@@ -400,14 +348,6 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   scale_y_log10()
 ```
 
-    `geom_smooth()` using formula = 'y ~ x'
-
-    Warning: Removed 2 rows containing non-finite outside the scale range
-    (`stat_smooth()`).
-
-    Warning: Removed 2 rows containing missing values or values outside the scale range
-    (`geom_point()`).
-
 ![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-15-1.png)
 
 ## Axis and legend titles
@@ -436,14 +376,6 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   labs(x = "Bill length (mm)",
        y = "Bill depth (mm)")
 ```
-
-    `geom_smooth()` using formula = 'y ~ x'
-
-    Warning: Removed 2 rows containing non-finite outside the scale range
-    (`stat_smooth()`).
-
-    Warning: Removed 2 rows containing missing values or values outside the scale range
-    (`geom_point()`).
 
 ![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-16-1.png)
 
@@ -491,14 +423,6 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   theme(axis.title.x = element_text(color = "red",
                                     size = 16))
 ```
-
-    `geom_smooth()` using formula = 'y ~ x'
-
-    Warning: Removed 2 rows containing non-finite outside the scale range
-    (`stat_smooth()`).
-
-    Warning: Removed 2 rows containing missing values or values outside the scale range
-    (`geom_point()`).
 
 ![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-17-1.png)
 
@@ -549,14 +473,6 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   theme_classic()
 ```
 
-    `geom_smooth()` using formula = 'y ~ x'
-
-    Warning: Removed 2 rows containing non-finite outside the scale range
-    (`stat_smooth()`).
-
-    Warning: Removed 2 rows containing missing values or values outside the scale range
-    (`geom_point()`).
-
 ![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-18-1.png)
 
 That looks quite nice! The weird gray default background is gone, and
@@ -602,14 +518,6 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
         )
 ```
 
-    `geom_smooth()` using formula = 'y ~ x'
-
-    Warning: Removed 2 rows containing non-finite outside the scale range
-    (`stat_smooth()`).
-
-    Warning: Removed 2 rows containing missing values or values outside the scale range
-    (`geom_point()`).
-
 ![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-19-1.png)
 
 # 2) CO2 Uptake in Grass Plants Data
@@ -637,3 +545,11 @@ kinds of graphs we’ve used so far and whether your variables are
 continuous or categorical.
 
 ### Q2.3: Create your graph
+
+The past two activities have provided a brief sampling of the
+possibilities of customizing graphs using ggplot. Use what you have
+learned and make a Really Nice Graph that answers your question! Go wild
+with customization.
+
+As in the previous lesson, create and export a graph to this link
+\_\_\_\_\_\_\_\_

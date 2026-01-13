@@ -5,7 +5,7 @@ format: markdown_github
 editor: visual
 
 execute:
-  error: false
+  warning: false
 ---
 
 # Overview
@@ -20,11 +20,11 @@ You will submit two outputs for this activity:
 
 A note about submitting code:
 
-As a general practice, it is good to **use headers to denote which section of the homework** you are in and **add in your own comments about what each line is actually doing** - this is excellent practice for organizing your own big R scripts in the future. The biggest way that you will code for probably the first few years of your coding career will consist of you revisiting old R scripts and copying/pasting code and/or adapting that code to your current problems. I promise you, your future self will be thrilled with your current self if you take the extra few minutes to 1) organize your code in a nice way and 2) provide detailed comments about what each line is doing (as well as what questions you have about it).
+As a general practice, it is good to **use headers to denote which section of the homework** you are in and **add in your own comments about what each line is actually doing** - this is excellent practice for organizing your own big R scripts in the future. A common way that you will code for the first few years of your coding career will consist of you revisiting old R scripts and copying/pasting code and/or adapting that code to your current problems. I promise you, your future self will be thrilled with your current self if you take the extra few minutes to 1) organize your code in a nice way and 2) provide detailed comments about what each line is doing (as well as what questions you have about it).
 
 Also, don’t be afraid to use lots of blank lines! It is MUCH nicer for your future self to look at code that has a few blank lines in between sections of code than a bajillion lines in a row of straight code.
 
-*From here on, please put headers (either as comments in the code or as Quarto headers) to denote which question you are answering (e.g. "Q1:") and precede your code with comments that describe what that code does.*
+*For the remaining activities, please put headers (either as comments in the code or as Quarto headers) to denote which question you are answering (e.g. "Q1:") and precede your code with comments that describe what that code does.*
 
 # 1) Penguins!
 
@@ -80,7 +80,7 @@ To address the second part of our question:
 
 1.  Change the aesthetics of this plot to color the points by the species of penguin and
 
-2.  Interpret the graph by describing the relationship you see and if this new visualization changes your answer to the previous question.
+2.  Interpret the graph by describing the relationship you see and if this new visualization changes your answer to Q1.1.
 
 ```{r}
 
@@ -94,7 +94,7 @@ Ok, now let's jump into some fun data visualization and learn about how to custo
 
 ## Scales for aesthetics
 
-We can manually modify the values of the aesthetics of our ggplot graph (the `color`, `shape`, opacity aka `alpha`, etc) by using a series of functions called `scale_*_**()` where the first \* is replaced by the aesthetic we are modifying (e.g. color), and the second translates to the kind of prepacked or manual set of values that we want to use. Often it will be `scale_*_manual()` if we want to manually chose the values instead of using premade ones.
+We can manually modify the values of the aesthetics of our ggplot graph (the `color`, `shape`, opacity (aka `alpha`), etc) by using a series of functions called `scale_*_**()` where the first \* is replaced by the aesthetic we are modifying (e.g. color), and the second translates to the kind of prepacked or manual set of values that we want to use. Often it will be `scale_*_manual()` if we want to manually chose the values instead of using premade ones.
 
 Monday's Seaside Chat provided some practice with modifying the scales of the color aesthetics using `scale_color_manual()` and `scale_color_brewer()`.
 
@@ -399,3 +399,7 @@ Once you have a sense of what is in the dataset, write a research question that 
 What graph would be appropriate to answer this question? Think about the kinds of graphs we've used so far and whether your variables are continuous or categorical.
 
 ### Q2.3: Create your graph
+
+The past two activities have provided a brief sampling of the possibilities of customizing graphs using ggplot. Use what you have learned and make a Really Nice Graph that answers your question! Go wild with customization.
+
+As in the previous lesson, create and export a graph to this link ________
