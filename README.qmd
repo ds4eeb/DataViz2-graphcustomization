@@ -3,6 +3,7 @@ title: "Activity 4: Data visualization 2: Customizing plots"
 subtitle: Jan. 14th, 2026, Calvin Munson
 format: markdown_github
 editor: visual
+
 execute:
   error: false
 ---
