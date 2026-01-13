@@ -252,6 +252,86 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
 
 ![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
+Let’s put a `geom_smooth()` with `method = "lm"` in there to look at the
+relationships more closely!
+
+``` r
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(fill = species,
+                 shape = species),
+             size = 2.5) +
+  geom_smooth(method = "lm") +
+  scale_fill_brewer(palette = "Dark2") +
+  scale_shape_manual(values = c(21, 22, 24))
+```
+
+    `geom_smooth()` using formula = 'y ~ x'
+
+    Warning: Removed 2 rows containing non-finite outside the scale range
+    (`stat_smooth()`).
+
+    Warning: Removed 2 rows containing missing values or values outside the scale range
+    (`geom_point()`).
+
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-11-1.png)
+
+What’s going on here? Geoms adopt the aesthetics that are supplied in
+`ggplot(aes(*))` as default. All we provided `ggplot()` was an `x =` and
+a `y =`, so as far as `geom_smooth()` is concerned, the `species` column
+doesn’t exist. Let’s add in `aes(color = species)` to the
+`geom_smooth()` function to tell it to color the smoothed line by
+species.
+
+``` r
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(fill = species,
+                 shape = species),
+             size = 2.5) +
+  geom_smooth(method = "lm",
+              aes(color = species)) +
+  scale_fill_brewer(palette = "Dark2") +
+  scale_shape_manual(values = c(21, 22, 24))
+```
+
+    `geom_smooth()` using formula = 'y ~ x'
+
+    Warning: Removed 2 rows containing non-finite outside the scale range
+    (`stat_smooth()`).
+
+    Warning: Removed 2 rows containing missing values or values outside the scale range
+    (`geom_point()`).
+
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-12-1.png)
+
+Now there are three separate `geom_smooth()` lines - one for each
+species! However, our nice custom color scheme no longer applies. That’s
+because earlier we changed `scale_color_brewer()` into
+`scale_fill_brewer()` to accommodate Calvin’s unreasonable desire to
+have shapes that fill in with color. Let’s re-add `scale_color_brewer()`
+underneath `scale_fill_brewer()`
+
+``` r
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(fill = species,
+                 shape = species),
+             size = 2.5) +
+  geom_smooth(method = "lm",
+              aes(color = species)) +
+  scale_fill_brewer(palette = "Dark2") +
+  scale_color_brewer(palette = "Dark2") +
+  scale_shape_manual(values = c(21, 22, 24))
+```
+
+    `geom_smooth()` using formula = 'y ~ x'
+
+    Warning: Removed 2 rows containing non-finite outside the scale range
+    (`stat_smooth()`).
+
+    Warning: Removed 2 rows containing missing values or values outside the scale range
+    (`geom_point()`).
+
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-13-1.png)
+
 ## Scales for axis aesthetics specifically
 
 Your x- and y- axes are part of your aesthetics, just like color, fill,
@@ -270,15 +350,23 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(aes(fill = species,
                  shape = species),
              size = 2.5) +
+  geom_smooth(method = "lm",
+              aes(color = species)) +
   scale_fill_brewer(palette = "Dark2") +
+  scale_color_brewer(palette = "Dark2") +
   scale_shape_manual(values = c(21, 22, 24)) +
   scale_y_continuous(limits = c(0, 30))
 ```
 
+    `geom_smooth()` using formula = 'y ~ x'
+
+    Warning: Removed 2 rows containing non-finite outside the scale range
+    (`stat_smooth()`).
+
     Warning: Removed 2 rows containing missing values or values outside the scale range
     (`geom_point()`).
 
-![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-11-1.png)
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-14-1.png)
 
 ### Q1.4: How to use the existing maximum for limits
 
@@ -304,15 +392,23 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(aes(fill = species,
                  shape = species),
              size = 2.5) +
+  geom_smooth(method = "lm",
+              aes(color = species)) +
   scale_fill_brewer(palette = "Dark2") +
+  scale_color_brewer(palette = "Dark2") +
   scale_shape_manual(values = c(21, 22, 24)) +
   scale_y_log10()
 ```
 
+    `geom_smooth()` using formula = 'y ~ x'
+
+    Warning: Removed 2 rows containing non-finite outside the scale range
+    (`stat_smooth()`).
+
     Warning: Removed 2 rows containing missing values or values outside the scale range
     (`geom_point()`).
 
-![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-12-1.png)
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-15-1.png)
 
 ## Axis and legend titles
 
@@ -332,23 +428,32 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(aes(fill = species,
                  shape = species),
              size = 2.5) +
+  geom_smooth(method = "lm",
+              aes(color = species)) +
   scale_fill_brewer(palette = "Dark2") +
+  scale_color_brewer(palette = "Dark2") +
   scale_shape_manual(values = c(21, 22, 24)) +
   labs(x = "Bill length (mm)",
        y = "Bill depth (mm)")
 ```
 
+    `geom_smooth()` using formula = 'y ~ x'
+
+    Warning: Removed 2 rows containing non-finite outside the scale range
+    (`stat_smooth()`).
+
     Warning: Removed 2 rows containing missing values or values outside the scale range
     (`geom_point()`).
 
-![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-13-1.png)
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-16-1.png)
 
 ### Q1.5: Change the legend title
 
 The legend title is currently not capitalized - add to the `labs()`
 function to change the title of the correct aesthetic(s) to make the
 legend title read “Species”. (You may encounter an unexpected result -
-try and figure out what you can do to make it appear how you want!).
+try and figure out what you can do to make it appear how you want! Hint:
+how many different aesthetics is `species` currently mapped to?).
 
 ## Themes
 
@@ -373,20 +478,29 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(aes(fill = species,
                  shape = species),
              size = 2.5) +
+  geom_smooth(method = "lm",
+              aes(color = species)) +
   scale_fill_brewer(palette = "Dark2") +
+  scale_color_brewer(palette = "Dark2") +
   scale_shape_manual(values = c(21, 22, 24)) +
   labs(x = "Bill length (mm)",
        y = "Bill depth (mm)", 
        fill = "Species",
+       color = "Species",
        shape = "Species") +
   theme(axis.title.x = element_text(color = "red",
                                     size = 16))
 ```
 
+    `geom_smooth()` using formula = 'y ~ x'
+
+    Warning: Removed 2 rows containing non-finite outside the scale range
+    (`stat_smooth()`).
+
     Warning: Removed 2 rows containing missing values or values outside the scale range
     (`geom_point()`).
 
-![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-14-1.png)
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-17-1.png)
 
 Depending on what the element is, you use a different `element_*()`
 function:
@@ -417,24 +531,33 @@ options pop up! Let’s click on and add `theme_classic()`.
 
 ``` r
 ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
-  geom_point(aes(fill = species,
+ geom_point(aes(fill = species,
                  shape = species),
              size = 2.5) +
+  geom_smooth(method = "lm",
+              aes(color = species)) +
   scale_fill_brewer(palette = "Dark2") +
+  scale_color_brewer(palette = "Dark2") +
   scale_shape_manual(values = c(21, 22, 24)) +
   labs(x = "Bill length (mm)",
        y = "Bill depth (mm)", 
        fill = "Species",
+       color = "Species",
        shape = "Species") +
   theme(axis.title.x = element_text(color = "red",
                                     size = 16)) +
   theme_classic()
 ```
 
+    `geom_smooth()` using formula = 'y ~ x'
+
+    Warning: Removed 2 rows containing non-finite outside the scale range
+    (`stat_smooth()`).
+
     Warning: Removed 2 rows containing missing values or values outside the scale range
     (`geom_point()`).
 
-![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-15-1.png)
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-18-1.png)
 
 That looks quite nice! The weird gray default background is gone, and
 there’s now a traditional x and y axis with no axis panel grids.
@@ -458,11 +581,15 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(aes(fill = species,
                  shape = species),
              size = 2.5) +
+  geom_smooth(aes(color = species),
+              method = "lm") +
   scale_fill_brewer(palette = "Dark2") +
+  scale_color_brewer(palette = "Dark2") +
   scale_shape_manual(values = c(21, 22, 24)) +
   labs(x = "Bill length (mm)",
        y = "Bill depth (mm)", 
        fill = "Species",
+       color = "Species",
        shape = "Species") +
   theme_classic() +
   theme(axis.title = element_text(size = 14),
@@ -470,14 +597,20 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
         legend.text = element_text(size = 12),
         legend.title = element_text(size = 12),
         legend.position = "inside",
-        legend.position.inside = c(0.9, 0.15)
+        legend.position.inside = c(0.9, 0.15),
+        legend.background = element_rect(color = "black")
         )
 ```
+
+    `geom_smooth()` using formula = 'y ~ x'
+
+    Warning: Removed 2 rows containing non-finite outside the scale range
+    (`stat_smooth()`).
 
     Warning: Removed 2 rows containing missing values or values outside the scale range
     (`geom_point()`).
 
-![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-16-1.png)
+![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-19-1.png)
 
 # 2) CO2 Uptake in Grass Plants Data
 

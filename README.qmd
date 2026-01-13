@@ -3,6 +3,8 @@ title: "Activity 4: Data visualization 2: Customizing plots"
 subtitle: Jan. 14th, 2026, Calvin Munson
 format: markdown_github
 editor: visual
+execute:
+  error: false
 ---
 
 # Overview
@@ -159,6 +161,46 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   scale_shape_manual(values = c(21, 22, 24))
 ```
 
+Let's put a `geom_smooth()` with `method = "lm"` in there to look at the relationships more closely!
+
+```{r}
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(fill = species,
+                 shape = species),
+             size = 2.5) +
+  geom_smooth(method = "lm") +
+  scale_fill_brewer(palette = "Dark2") +
+  scale_shape_manual(values = c(21, 22, 24))
+```
+
+What's going on here? Geoms adopt the aesthetics that are supplied in `ggplot(aes(*))` as default. All we provided `ggplot()` was an `x =` and a `y = `, so as far as `geom_smooth()` is concerned, the `species` column doesn't exist. Let's add in `aes(color = species)` to the `geom_smooth()` function to tell it to color the smoothed line by species.
+
+
+```{r}
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(fill = species,
+                 shape = species),
+             size = 2.5) +
+  geom_smooth(method = "lm",
+              aes(color = species)) +
+  scale_fill_brewer(palette = "Dark2") +
+  scale_shape_manual(values = c(21, 22, 24))
+```
+
+Now there are three separate `geom_smooth()` lines - one for each species! However, our nice custom color scheme no longer applies. That's because earlier we changed `scale_color_brewer()` into `scale_fill_brewer()` to accommodate Calvin's unreasonable desire to have shapes that fill in with color. Let's re-add `scale_color_brewer()` underneath `scale_fill_brewer()`
+
+```{r}
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(fill = species,
+                 shape = species),
+             size = 2.5) +
+  geom_smooth(method = "lm",
+              aes(color = species)) +
+  scale_fill_brewer(palette = "Dark2") +
+  scale_color_brewer(palette = "Dark2") +
+  scale_shape_manual(values = c(21, 22, 24))
+```
+
 ## Scales for axis aesthetics specifically
 
 Your x- and y- axes are part of your aesthetics, just like color, fill, shape. You can modify the scales of the axes too. Two common ways people change up the scales of their graphs are:
@@ -173,7 +215,10 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(aes(fill = species,
                  shape = species),
              size = 2.5) +
+  geom_smooth(method = "lm",
+              aes(color = species)) +
   scale_fill_brewer(palette = "Dark2") +
+  scale_color_brewer(palette = "Dark2") +
   scale_shape_manual(values = c(21, 22, 24)) +
   scale_y_continuous(limits = c(0, 30))
 ```
@@ -193,7 +238,10 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(aes(fill = species,
                  shape = species),
              size = 2.5) +
+  geom_smooth(method = "lm",
+              aes(color = species)) +
   scale_fill_brewer(palette = "Dark2") +
+  scale_color_brewer(palette = "Dark2") +
   scale_shape_manual(values = c(21, 22, 24)) +
   scale_y_log10()
 
@@ -211,7 +259,10 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(aes(fill = species,
                  shape = species),
              size = 2.5) +
+  geom_smooth(method = "lm",
+              aes(color = species)) +
   scale_fill_brewer(palette = "Dark2") +
+  scale_color_brewer(palette = "Dark2") +
   scale_shape_manual(values = c(21, 22, 24)) +
   labs(x = "Bill length (mm)",
        y = "Bill depth (mm)")
@@ -220,7 +271,7 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
 
 ### Q1.5: Change the legend title
 
-The legend title is currently not capitalized - add to the `labs()` function to change the title of the correct aesthetic(s) to make the legend title read "Species". (You may encounter an unexpected result - try and figure out what you can do to make it appear how you want!).
+The legend title is currently not capitalized - add to the `labs()` function to change the title of the correct aesthetic(s) to make the legend title read "Species". (You may encounter an unexpected result - try and figure out what you can do to make it appear how you want! Hint: how many different aesthetics is `species` currently mapped to?).
 
 ## Themes
 
@@ -236,11 +287,15 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(aes(fill = species,
                  shape = species),
              size = 2.5) +
+  geom_smooth(method = "lm",
+              aes(color = species)) +
   scale_fill_brewer(palette = "Dark2") +
+  scale_color_brewer(palette = "Dark2") +
   scale_shape_manual(values = c(21, 22, 24)) +
   labs(x = "Bill length (mm)",
        y = "Bill depth (mm)", 
        fill = "Species",
+       color = "Species",
        shape = "Species") +
   theme(axis.title.x = element_text(color = "red",
                                     size = 16))
@@ -267,14 +322,18 @@ Modifying ALL THAT from scratch can be overwhelming! Thankfully, R has a handful
 
 ```{r}
 ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
-  geom_point(aes(fill = species,
+ geom_point(aes(fill = species,
                  shape = species),
              size = 2.5) +
+  geom_smooth(method = "lm",
+              aes(color = species)) +
   scale_fill_brewer(palette = "Dark2") +
+  scale_color_brewer(palette = "Dark2") +
   scale_shape_manual(values = c(21, 22, 24)) +
   labs(x = "Bill length (mm)",
        y = "Bill depth (mm)", 
        fill = "Species",
+       color = "Species",
        shape = "Species") +
   theme(axis.title.x = element_text(color = "red",
                                     size = 16)) +
@@ -298,11 +357,15 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(aes(fill = species,
                  shape = species),
              size = 2.5) +
+  geom_smooth(aes(color = species),
+              method = "lm") +
   scale_fill_brewer(palette = "Dark2") +
+  scale_color_brewer(palette = "Dark2") +
   scale_shape_manual(values = c(21, 22, 24)) +
   labs(x = "Bill length (mm)",
        y = "Bill depth (mm)", 
        fill = "Species",
+       color = "Species",
        shape = "Species") +
   theme_classic() +
   theme(axis.title = element_text(size = 14),
@@ -310,7 +373,8 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
         legend.text = element_text(size = 12),
         legend.title = element_text(size = 12),
         legend.position = "inside",
-        legend.position.inside = c(0.9, 0.15)
+        legend.position.inside = c(0.9, 0.15),
+        legend.background = element_rect(color = "black")
         )
 
 ```
