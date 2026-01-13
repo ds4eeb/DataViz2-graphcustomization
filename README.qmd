@@ -1,0 +1,62 @@
+---
+title: "Activity 4: Data visualization 2: Customizing plots"
+subtitle: Jan. 14th, 2026, Calvin Munson
+format: markdown_github
+editor: visual
+---
+
+# Overview
+
+Welcome! Today's activity is all about the basics of customizing plots. We will continue using `ggplot2.`
+
+You will submit two outputs for this activity:
+
+1.  A **PDF** of a rendered Quarto document with all of your R code (see below). Please include all of the code that appears in this document, in addition to adding your own code in the "Q#" sections.
+
+2.  A plot and research question from the final section
+
+A note about submitting code: 
+
+As a general practice, it is good to **use headers to denote which section of the homework** you are in and **add in your own comments about what each line is actually doing** - this is excellent practice for organizing your own big R scripts in the future. The biggest way that you will code for probably the first few years of your coding career will consist of you revisiting old R scripts and copying/pasting code and/or adapting that code to your current problems. I promise you, your future self will be thrilled with your current self if you take the extra few minutes to 1) organize your code in a nice way and 2) provide detailed comments about what each line is doing (as well as what questions you have about it). 
+
+Also, don’t be afraid to use lots of blank lines! It is MUCH nicer for your future self to look at code that has a few blank lines in between sections of code than a bajillion lines in a row of straight code.
+
+From here on, please put headers (either as comments in the code or as Quarto headers) to denote which question you are answering (e.g. "Q1:") and precede your code with comments that describe what that code does.
+
+# 1) ____ Data
+
+## Setting up
+
+First, let's load our packages. You should already have the `here` and `ggplot2` packages installed; read them in from the library in your code.
+
+```{r setup, warning = FALSE, message = FALSE}
+# install.packages("ggplot2")
+library(ggplot2)
+library(here)
+
+
+
+```
+
+
+# 2) CO2 Uptake in Grass Plants Data
+
+Next, it's time to practice what you've learned again! R has a number of built-in datasets. The dataset `CO2` provides the data from an experiment on the cold tolerance of a grass species. Familiarize yourself with the dataset by reading the help page for this dataset
+
+```{r}
+# Putting a "?" in front of a function (or built-in dataset) will automatically bring up its help page!
+?CO2
+```
+
+## Q2.1: Write a research question that you would like to answer
+
+Once you have a sense of what is in the dataset, write a research question that you would like to answer. There are many options with varying complexity!
+
+## Q2.2: Choose a graph to answer your question
+
+What graph would be appropriate to answer this question? Think about the kinds of graphs we've used so far and whether your variables are continuous or categorical.
+
+## Q2.3: Create your graph
+
+
+
