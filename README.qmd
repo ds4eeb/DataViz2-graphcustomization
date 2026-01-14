@@ -2,7 +2,6 @@
 title: "Activity 4: Data visualization 2: Customizing plots"
 subtitle: Jan. 14th, 2026, Calvin Munson
 format: markdown_github
-editor: visual
 
 execute:
   warning: false
@@ -15,6 +14,8 @@ Welcome! Today's activity is all about the basics of customizing plots. We will 
 You will submit two outputs for this activity:
 
 1.  A **PDF** of a rendered Quarto document with all of your R code (see below). Please include all of the code that appears in this document, in addition to adding your own code in the "Q#" sections.
+
+*If you have trouble submitting as a PDF, please ask Calvin or Malin for help. If we still can't solve it, you can submit the .qmd file instead.*
 
 2.  A plot and research question from the final section
 
@@ -29,8 +30,6 @@ Also, don’t be afraid to use lots of blank lines! It is MUCH nicer for your fu
 # 1) Penguins!
 
 ![Gentoo penguin](gentoo.jpg)
-
-
 
 ## Setting up
 
@@ -407,7 +406,6 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
 
 ```
 
-
 ```{r}
 # Graph bill length vs depth
 ggplot(data = penguins, aes(x = species, y = body_mass_g)) +
@@ -455,39 +453,40 @@ ggplot(data = penguins, aes(x = species, y = body_mass_g)) +
 
 ```
 
-# 2) CO2 Uptake in Grass Plants Data
+# 2) Make your abalone figure ready for prime time!
 
-![Echinochloa crus-galli](Echinochloa_crusgalli.jpg)
+Next, it's time to practice what you've learned! 
 
+Please take a look at the feedback you got on the abalone figure (go back to Canvas and look in Hypothesis). Decide which aspects of the feedback you find useful, combined with your own thoughts on how to make the figure more effective as an explanatory graph.
 
-Next, it's time to practice what you've learned! R has a number of built-in datasets. The dataset `CO2` provides the data from an experiment on the cold tolerance of a grass species. Familiarize yourself with the dataset by reading the help page for this dataset
+### Q2.1: Pick an audience for your explanatory graph.
 
-```{r}
-# Remember: putting a "?" in front of a function (or built-in dataset) will automatically bring up its help page!
-?CO2
-```
+This could be everything from another scientist to a policymaker, a community member, your grandmother, or anyone else. Please write a short explanation of who this person or group of people is.
 
-### Q2.1: Write a research question that you would like to answer
+------------------------------------------------------------------------
 
-Once you have a sense of what is in the dataset, write a research question that you would like to answer. There are many options of varying complexity!
+### Q2.2: Remake your original graph from Monday.
 
----------
+This should be as simple as copy and pasting the code you used on Monday. You'll need to create a new code block below here (remember how to do that?).
 
-### Q2.2: Choose a graph to answer your question
+------------------------------------------------------------------------
 
-What graph would be appropriate to answer this question? Think about the kinds of graphs we've used so far and whether your variables are continuous or categorical.
+### Q2.3: Describe how you would like to modify the figure to make it more effective as an explanatory graph for the audience you chose in Q2.1.
 
----------
-
-### Q2.3: Create your graph
-
-The past two activities have provided a brief sampling of the possibilities of customizing graphs using ggplot. Use what you have learned and make a Really Nice Graph that answers your question! Go wild with customization.
+The past two activities have provided a brief sampling of the possibilities of customizing graphs using ggplot. You are welcome to explore other possibilities, too, either on your own or by talking with the teaching team.
 
 
----------
+------------------------------------------------------------------------
 
-### Q2.4: Interpret your graph
+### Q2.4 Make the explanatory graph!
 
-Write a couple sentences interpreting your graph to answer your research question.
+Use what you have learned and make a Really Nice Graph for your audience! Go wild with making it pretty.
 
-As in the previous lesson, export your research question, graph, and interpretation to this link \_\_\_\_\_\_\_\_
+
+### Q2.5: Explain your graph
+
+Write a couple sentences explaining the message you hope your audience will take away from seeing your graph.
+
+# Wrap up and submit
+
+As in the previous lesson, render this Quarto document to a PDF (if you can; see guidance at the top) and submit this through GradeScope.
