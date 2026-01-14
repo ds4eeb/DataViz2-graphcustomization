@@ -147,12 +147,6 @@ of the color aesthetics using `scale_color_manual()` and
 Using your new color skills, modify the `scale_color_*` code below to
 include a new color selection!
 
-*Sidenote: When you’re typing within a function, you can hit “Enter” (or
-“Return” for Mac users) after a comma to continue code on a new line -
-see how I made a new line within* `geom_point(aes())`. *This can make
-things look much neater if you are typing out many arguments at once! It
-also does not affect how the code is run at all.*
-
 ``` r
 ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(aes(color = species)) +
@@ -163,6 +157,12 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
 
 Let’s make the shape of the points vary by species to even more clearly
 separate the points by species:
+
+*Sidenote: When you’re typing within a function, you can hit “Enter” (or
+“Return” for Mac users) after a comma to continue code on a new line -
+see how I made a new line within* `geom_point(aes())`. *This can make
+things look much neater if you are typing out many arguments at once! It
+also does not affect how the code is run at all.*
 
 ``` r
 ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
