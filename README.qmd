@@ -28,6 +28,10 @@ Also, don’t be afraid to use lots of blank lines! It is MUCH nicer for your fu
 
 # 1) Penguins!
 
+![Gentoo penguin](gentoo.jpg)
+
+
+
 ## Setting up
 
 First, let's load our packages. You should already have the `here` and `ggplot2` packages installed; read them in from the library in your code. Also install and read in the `palmerpenguins` package, which contains built-in data - you may recognize this from Malin's ggplot lecture!
@@ -452,6 +456,9 @@ ggplot(data = penguins, aes(x = species, y = body_mass_g)) +
 ```
 
 # 2) CO2 Uptake in Grass Plants Data
+
+![Echinochloa crus-galli](Echinochloa_crusgalli.jpg)
+
 
 Next, it's time to practice what you've learned! R has a number of built-in datasets. The dataset `CO2` provides the data from an experiment on the cold tolerance of a grass species. Familiarize yourself with the dataset by reading the help page for this dataset
 

@@ -40,6 +40,8 @@ what that code does.*
 
 # 1) Penguins!
 
+![Gentoo penguin](gentoo.jpg)
+
 ## Setting up
 
 First, let’s load our packages. You should already have the `here` and
@@ -602,6 +604,8 @@ ggplot(data = penguins, aes(x = species, y = body_mass_g)) +
 ![](README.markdown_github_files/figure-markdown_github/unnamed-chunk-22-1.png)
 
 # 2) CO2 Uptake in Grass Plants Data
+
+![Echinochloa crus-galli](Echinochloa_crusgalli.jpg)
 
 Next, it’s time to practice what you’ve learned! R has a number of
 built-in datasets. The dataset `CO2` provides the data from an
