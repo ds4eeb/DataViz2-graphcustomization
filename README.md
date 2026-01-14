@@ -603,7 +603,7 @@ ggplot(data = penguins, aes(x = species, y = body_mass_g)) +
 
 # 2) CO2 Uptake in Grass Plants Data
 
-Next, it’s time to practice what you’ve learned again! R has a number of
+Next, it’s time to practice what you’ve learned! R has a number of
 built-in datasets. The dataset `CO2` provides the data from an
 experiment on the cold tolerance of a grass species. Familiarize
 yourself with the dataset by reading the help page for this dataset
@@ -616,14 +616,18 @@ yourself with the dataset by reading the help page for this dataset
 ### Q2.1: Write a research question that you would like to answer
 
 Once you have a sense of what is in the dataset, write a research
-question that you would like to answer. There are many options with
+question that you would like to answer. There are many options of
 varying complexity!
+
+------------------------------------------------------------------------
 
 ### Q2.2: Choose a graph to answer your question
 
 What graph would be appropriate to answer this question? Think about the
 kinds of graphs we’ve used so far and whether your variables are
 continuous or categorical.
+
+------------------------------------------------------------------------
 
 ### Q2.3: Create your graph
 
@@ -632,5 +636,12 @@ possibilities of customizing graphs using ggplot. Use what you have
 learned and make a Really Nice Graph that answers your question! Go wild
 with customization.
 
-As in the previous lesson, create and export a graph to this link
-\_\_\_\_\_\_\_\_
+------------------------------------------------------------------------
+
+### Q2.4: Interpret your graph
+
+Write a couple sentences interpreting your graph to answer your research
+question.
+
+As in the previous lesson, export your research question, graph, and
+interpretation to this link \_\_\_\_\_\_\_\_
