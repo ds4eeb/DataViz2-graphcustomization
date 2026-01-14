@@ -1,5 +1,5 @@
-# Activity 4: Data visualization 2: Customizing plots
-
+Activity 4: Data visualization 2: Customizing plots
+================
 
 # Overview
 
@@ -43,10 +43,7 @@ what that code does.*
 
 # 1) Penguins!
 
-<figure>
-<img src="gentoo.jpg" alt="Gentoo penguin" />
-<figcaption aria-hidden="true">Gentoo penguin</figcaption>
-</figure>
+![Gentoo penguin](gentoo.jpg)
 
 ## Setting up
 
@@ -83,15 +80,6 @@ and sex”. Read on to learn about each column in the dataset.
 # Putting a "?" in front of a function (or built-in dataset) will automatically bring up its help page!
 ?penguins
 ```
-
-    Help on topic 'penguins' was found in the following packages:
-
-      Package               Library
-      datasets              /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library
-      palmerpenguins        /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library
-
-
-    Using the first match ...
 
 ## Start with a question
 
@@ -620,6 +608,8 @@ ggplot(data = penguins, aes(x = species, y = body_mass_g)) +
 
 # 2) Make your abalone figure ready for prime time!
 
+![Black abalone](blackabalone.jpg)
+
 Next, it’s time to practice what you’ve learned!
 
 Please take a look at the feedback you got on the abalone figure (go
@@ -639,9 +629,9 @@ explanation of who this person or group of people is.
 
 ### Q2.2: Remake your original graph from Monday.
 
-This should be as simple as copy and pasting the code you used on
-Monday. You’ll need to create a new code block below here (remember how
-to do that?).
+This should be as simple as copy and pasting the code you used on Monday
+(though remember to read in the data!). You’ll need to create a new code
+block below here (remember how to do that?).
 
 ------------------------------------------------------------------------
 
