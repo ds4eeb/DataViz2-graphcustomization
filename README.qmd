@@ -13,11 +13,11 @@ Welcome! Today's activity is all about the basics of customizing plots. We will 
 
 You will submit two outputs for this activity:
 
-1.  A **PDF** of a rendered Quarto document with all of your R code (see below). Please include all of the code that appears in this document, in addition to adding your own code in the "Q#" sections.
+1. A **PDF** of a rendered Quarto document with all of your R code (see below). Please include all of the code that appears in this document, in addition to adding your own code in the "Q#" sections.
 
 *If you have trouble submitting as a PDF, please ask Calvin or Malin for help. If we still can't solve it, you can submit the .qmd file instead.*
 
-2.  A plot and research question from the final section
+2. A plot and research question from the final section
 
 A note about submitting code:
 
@@ -455,6 +455,8 @@ ggplot(data = penguins, aes(x = species, y = body_mass_g)) +
 
 # 2) Make your abalone figure ready for prime time!
 
+![Black abalone](blackabalone.jpg)
+
 Next, it's time to practice what you've learned! 
 
 Please take a look at the feedback you got on the abalone figure (go back to the [Google slides](https://docs.google.com/presentation/d/1wAGmbArAW2YKmufrBbzCQ3BcDdwDknzgoRHYEmFXJko/edit?usp=sharing), which now have the comments pasted in the speaker notes). Decide which aspects of the feedback you find useful, combined with your own thoughts on how to make the figure more effective as an explanatory graph.
@@ -467,7 +469,7 @@ This could be everything from another scientist to a policymaker, a community me
 
 ### Q2.2: Remake your original graph from Monday.
 
-This should be as simple as copy and pasting the code you used on Monday. You'll need to create a new code block below here (remember how to do that?).
+This should be as simple as copy and pasting the code you used on Monday (though remember to read in the data!). You'll need to create a new code block below here (remember how to do that?).
 
 ------------------------------------------------------------------------
 
