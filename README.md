@@ -4,8 +4,10 @@ Activity 4: Data visualization 2: Customizing plots
 # Overview
 
 Welcome! Today’s activity is all about the basics of customizing plots.
-We will continue using `ggplot2` and will use two built-in datasets for
-this activity (no reading in data is necessary today!).
+We will continue using `ggplot2` and will use a built-in dataset for
+part 1 and the old abalone data for part 2. For part 2, you will work
+with the same partners from last activity and modify the abalone graph
+you made together.
 
 You will submit two outputs for this activity:
 
@@ -13,10 +15,13 @@ You will submit two outputs for this activity:
     below). Please include all of the code that appears in this
     document, in addition to adding your own code in the “Q#” sections.
 
+2.  A revised plot and your answers from the final abalone section.
+    Submit that content to the same google slides as before and insert
+    it into a slide below your previous slide.
+    <https://docs.google.com/presentation/d/1wAGmbArAW2YKmufrBbzCQ3BcDdwDknzgoRHYEmFXJko/edit?usp=sharing>
+
 *If you have trouble submitting as a PDF, please ask Calvin or Malin for
 help. If we still can’t solve it, you can submit the .qmd file instead.*
-
-1.  A plot and research question from the final section
 
 A note about submitting code:
 
@@ -657,4 +662,7 @@ will take away from seeing your graph.
 # Wrap up and submit
 
 As in the previous lesson, render this Quarto document to a PDF (if you
-can; see guidance at the top) and submit this through GradeScope.
+can; see guidance at the top) and submit this through GradeScope. Submit
+all of the content from Part 2 to the same Google Slide as last time
+(insert a new slide below your old slide):
+<https://docs.google.com/presentation/d/1wAGmbArAW2YKmufrBbzCQ3BcDdwDknzgoRHYEmFXJko/edit?usp=sharing>
