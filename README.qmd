@@ -457,7 +457,7 @@ ggplot(data = penguins, aes(x = species, y = body_mass_g)) +
 
 Next, it's time to practice what you've learned! 
 
-Please take a look at the feedback you got on the abalone figure (go back to Canvas and look in Hypothesis). Decide which aspects of the feedback you find useful, combined with your own thoughts on how to make the figure more effective as an explanatory graph.
+Please take a look at the feedback you got on the abalone figure (go back to the [Google slides](https://docs.google.com/presentation/d/1wAGmbArAW2YKmufrBbzCQ3BcDdwDknzgoRHYEmFXJko/edit?usp=sharing), which now have the comments pasted in the speaker notes). Decide which aspects of the feedback you find useful, combined with your own thoughts on how to make the figure more effective as an explanatory graph.
 
 ### Q2.1: Pick an audience for your explanatory graph.
 
